@@ -14,7 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+<<<<<<< HEAD
 import './gui_commands'
+=======
+import './commands'
+>>>>>>> 08b87fd58791b9e8e7fd8701c961bbbf724420ed
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
