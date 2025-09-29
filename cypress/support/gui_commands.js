@@ -1,4 +1,4 @@
-// cypress/support/commands.js
+// cypress/support/guicommands.js
 // Cypress.Commands.add('login', (username, password) => {
 //     cy.get('#user_login').type(username)
 //     cy.get('#user_password').type(password)
@@ -20,8 +20,15 @@ Cypress.Commands.add('login', (
     cy.get("[data-qa-selector='sign_in_button']").click()
   }
 
+  const validate = () => {
+    cy.visit('/')
+    cy.location('pathname', { timeout: 1000 })
+      .should('not.eq', '/users/sign_in')
+  }
+
   const options = {
     cacheAcrossSpecs: true,
+    validate
   }
 
   if (cacheSession) {
@@ -33,11 +40,11 @@ Cypress.Commands.add('login', (
 
 
 Cypress.Commands.add('logout', () => {
-  cy.get('.header-user-avatar').click()
-  cy.get('.sign-out-link').click()
+  cy.get('.qa-user-avatar').click()
+  cy.contains('Sign out').click()
 })
 
-Cypress.Commands.add('gui_createProject', (project) => {
+Cypress.Commands.add('gui_createProject', project => {
  cy.visit('/projects/new')
 
  cy.get('#project_name').type(project.name)
